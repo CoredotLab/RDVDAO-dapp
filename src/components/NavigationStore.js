@@ -2,16 +2,14 @@ import { makeObservable, observable, action } from 'mobx';
 
 class NavigationStore {
   activeMenu = 'about';
-
-  constructor() {
-    makeObservable(this, {
-      activeMenu: observable,
-      setActiveMenu: action,
-    });
-  }
+  walletAddress = null;
 
   setActiveMenu(menuItem) {
     this.activeMenu = menuItem;
+  }
+
+  setWalletAddress(walletAddress) {
+    this.walletAddress = walletAddress;
   }
 }
 

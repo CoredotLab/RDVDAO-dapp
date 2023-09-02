@@ -20,12 +20,26 @@ export const StyledMenuItem = styled.div`
   color: ${props => (props.active ? 'green' : 'white')};
 `;
 
-export const GreenContainer = styled.div`
-  background: rgba(222, 255, 180, 0.26);
+// export const GreenContainer = styled.div`
+//   background: rgba(222, 255, 180, 0.26);
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 58px;
+//   z-index: 1;
+// `;
+
+export const LaunchAppBtn = styled.button`
+  cursor: pointer;
+  color: #039423;
+  width: 174px;
+  height: 50px;
+  text-align: center;
+  justify-content: center;
+  font-size: 22px;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 58px;
-  z-index: 1;
+  right: 100px;
+  top: 60px;
+  border-radius: 40px;
 `;

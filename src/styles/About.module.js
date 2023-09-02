@@ -15,6 +15,16 @@ export const BackgroundImg = styled.img`
   top: 0;
   left: 0;
 `;
+export const BackgroundImgMiddle = styled.img`
+  height: auto;
+  width: 100%;
+  max-width: 100%;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 1400px;
+`;
 
 export const TitleContainer = styled.div`
   color: white;
@@ -51,9 +61,10 @@ export const DataWrapper = styled.div`
 `;
 
 export const SideText = styled.div`
-  color: #3ae000;
+  color: white;
+  text-shadow: 0 0 10px rgba(255, 255, 255 0.7);
   font-size: 62px;
-  font-weight: 500;
+  font-weight: 600;
   justify-content: center;
   margin-left: 50px;
   margin-right: 50px;
@@ -61,7 +72,7 @@ export const SideText = styled.div`
 `;
 
 export const DataContainer = styled.div`
-  border: 2px dashed #3ae000;
+  border: 2px dashed white;
   display: block;
   width: 500px;
   height: 300px;

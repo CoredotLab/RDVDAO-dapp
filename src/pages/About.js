@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
+import { useNavigate } from 'react-router-dom';
 import {
   MainContainer,
   BackgroundImg,
@@ -12,14 +13,18 @@ import {
   StakingDataContainer,
   DataSubContainer,
   Data,
+  BackgroundImgMiddle,
 } from '../styles/About.module';
 import backgroundImg from '../assets/images/background.png';
+// import backgroundImgMiddle from '../assets/images/backgroundMiddle.png';
 import launchApp from '../assets/images/launchapp.png';
+import navigationStore from '../components/NavigationStore';
 
 function About() {
   var stakersAmount = 0;
   var stakingAmount = 0;
   var treasuryAmount = 0;
+  const navigate = useNavigate('/staking');
 
   return (
     <div>
@@ -34,7 +39,13 @@ function About() {
           <br />
           your stake into sustainable impact, without sacrificing your capital.
         </SubtitleContainer>
-        <LaunchAppBtn src={launchApp} />
+        <LaunchAppBtn
+          onClick={() => {
+            navigationStore.setActiveMenu('staking');
+            navigate('/staking');
+          }}
+          src={launchApp}
+        />
         <DataWrapper>
           <SideText>You can</SideText>
           <DataContainer>
