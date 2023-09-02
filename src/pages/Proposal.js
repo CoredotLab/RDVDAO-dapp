@@ -1,9 +1,9 @@
 import React from 'react';
 import Header from '../components/Header';
-import backgroundImg from '../assets/images/governance.png';
+import backgroundImg from '../assets/images/proposal.png';
 import { MainContainer, BackgroundImg } from '../styles/Governance.module';
 
-function Governance(props) {
+function Proposal(props) {
   return (
     <div>
       <BackgroundImg src={backgroundImg} />
@@ -14,4 +14,4 @@ function Governance(props) {
   );
 }
 
-export default Governance;
+export default Proposal;

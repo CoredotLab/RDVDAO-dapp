@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useEffect, useState } from 'react';
 import Header from '../components/Header';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -41,12 +41,29 @@ import someoneImg from '../assets/images/someone.png';
 import sproutImg from '../assets/images/sprout.png';
 import treeImg from '../assets/images/tree.png';
 import navigationStore from '../components/NavigationStore';
+import { VireoXContract } from '../contracts/modules/VireoX';
 
 function About() {
-  var stakersAmount = 1234;
-  var stakingAmount = 1234;
-  var treasuryAmount = '1234,124,1234';
+  var [stakersAmount, setStakersAmount] = useState('');
+  var [stakingAmount, setStakingAmount] = useState('');
+  var amount = 0;
+  var [treasuryAmount, setTreasuryAmount] = useState('100');
   const navigate = useNavigate('/staking');
+
+  useEffect(() => {
+    const vireoXContract = new VireoXContract();
+
+    vireoXContract
+      .getTotalSupply()
+      .then(totalSupply => {
+        setStakersAmount(totalSupply.toString());
+        amount = parseInt(totalSupply.toString()) * 1600;
+        setStakingAmount(amount.toString());
+      })
+      .catch(error => {
+        console.error('Error getting total supply:', error);
+      });
+  }, []);
 
   return (
     <div>

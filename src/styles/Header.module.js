@@ -43,3 +43,11 @@ export const LaunchAppBtn = styled.button`
   top: 60px;
   border-radius: 40px;
 `;
+
+export const Logo = styled.img`
+  width: 170px;
+  height: 50px;
+  position: absolute;
+  left: 150px;
+  top: 60px;
+`;
