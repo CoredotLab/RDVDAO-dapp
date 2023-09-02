@@ -13,17 +13,39 @@ import {
   StakingDataContainer,
   DataSubContainer,
   Data,
-  BackgroundImgMiddle,
+  TextByStep1,
+  TextByStep2,
+  TextByStep3,
+  TextByStep4,
+  GreenSpan,
+  NFTImg,
+  LaunchAppBtnGreen,
+  MidTitle,
+  MidTitleGreen,
+  BenefitContainer,
+  BenefitSubContainer,
+  BenefitWrapper,
+  SproutImg,
+  TreeImg,
+  SomeoneImg,
+  FaqContainer,
+  FaqTitle,
+  FaqWrapper,
+  Question,
+  Answer,
 } from '../styles/About.module';
 import backgroundImg from '../assets/images/background.png';
-// import backgroundImgMiddle from '../assets/images/backgroundMiddle.png';
+import Nft from '../assets/images/NFT.png';
 import launchApp from '../assets/images/launchapp.png';
+import someoneImg from '../assets/images/someone.png';
+import sproutImg from '../assets/images/sprout.png';
+import treeImg from '../assets/images/tree.png';
 import navigationStore from '../components/NavigationStore';
 
 function About() {
-  var stakersAmount = 0;
-  var stakingAmount = 0;
-  var treasuryAmount = 0;
+  var stakersAmount = 1234;
+  var stakingAmount = 1234;
+  var treasuryAmount = '1234,124,1234';
   const navigate = useNavigate('/staking');
 
   return (
@@ -64,6 +86,96 @@ function About() {
           <SideText>Join us</SideText>
         </DataWrapper>
       </MainContainer>
+      <TextByStep1>
+        The climate crisis is
+        <br /> no longer a distant threat,
+        <br /> it's at our doorstep.
+      </TextByStep1>
+      <TextByStep2>
+        With validators generating <br />
+        consistent returns,
+        <br /> you can contribute to
+        <br />
+        environmental causes <br />
+        without taking on any risk.
+      </TextByStep2>
+      <TextByStep3>
+        Through our DAO, <br />
+        propose and vote on the
+        <br /> environmental initiatives that
+        <br />
+        matter to you. Take an active
+        <br /> and leading role in shaping a<br /> sustainable future.
+      </TextByStep3>
+      <TextByStep4>
+        Raise your own adorable character through
+        <br />
+        <span style={{ color: '#06B4FF' }}>Dynamic NFT</span>s that '
+        <span style={{ color: '#06B4FF' }}>evolve</span>' based on
+        <br /> your <GreenSpan>environmental impact</GreenSpan> via staking!
+      </TextByStep4>
+      {/* <NFTImg src={Nft} /> */}
+      <LaunchAppBtnGreen>Launch app</LaunchAppBtnGreen>
+      <MidTitle>
+        If you stake 100 $ <span style={{ color: '#62EBA5' }}>now</span>
+      </MidTitle>
+      <BenefitWrapper>
+        <BenefitContainer>
+          1
+          <BenefitSubContainer>
+            Generate a<br /> $10 donation to
+            <br />
+            <span style={{ color: '#62EBA5' }}>
+              environmental
+              <br /> charities
+            </span>{' '}
+            each year.
+            <SproutImg src={sproutImg} />
+          </BenefitSubContainer>
+        </BenefitContainer>
+        <BenefitContainer>
+          2
+          <BenefitSubContainer>
+            Plant <span style={{ color: '#62EBA5' }}>12 trees</span>
+            <br /> every year
+            <TreeImg src={treeImg} />
+          </BenefitSubContainer>
+        </BenefitContainer>
+        <BenefitContainer>
+          3
+          <BenefitSubContainer>
+            Save <span style={{ color: '#62EBA5' }}>10 lives</span> from <br />
+            starvation annually
+            <SomeoneImg src={someoneImg} />
+          </BenefitSubContainer>
+        </BenefitContainer>
+      </BenefitWrapper>
+      <MidTitle>before unstake forever,</MidTitle>
+      <MidTitleGreen>take your adorable!</MidTitleGreen>
+      <div style={{ height: '400px' }} />
+      <LaunchAppBtnGreen>Launch app</LaunchAppBtnGreen>
+      <FaqTitle>FAQ</FaqTitle>
+      <FaqWrapper>
+        <FaqContainer>
+          <Question>Q. Is my staked amount being donated?</Question>
+          <Answer>
+            No, not at all! When you stake, you receive rdv Tokens as a<br />
+            representation of your staked amount. These rdv Tokens allow you to
+            <br />
+            reclaim your original amount whenever you choose to. 😊
+          </Answer>
+        </FaqContainer>
+        <FaqContainer>
+          <Question>Q. How do I raise my dNFT?</Question>
+          <Answer>
+            Your rdv monster evolves automatically based on the amount <br />{' '}
+            you've staked and how long you've been staking it. Think of its
+            evolution
+            <br />
+            as a reflection of your positive impact on the environment. 🌱
+          </Answer>
+        </FaqContainer>
+      </FaqWrapper>
     </div>
   );
 }
