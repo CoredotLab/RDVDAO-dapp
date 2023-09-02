@@ -1,7 +1,13 @@
 import React from 'react';
 
 function Header(props) {
-  return <div>header</div>;
+  return (
+    <div>
+      <div>about</div>
+      <div>staking</div>
+      <div>governance</div>t
+    </div>
+  );
 }
 
 export default Header;
