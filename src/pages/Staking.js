@@ -44,7 +44,7 @@ function Staking(props) {
       vireoETHContract
         .balanceOf(navigationStore.walletAddress)
         .then(balance => {
-          setStakedAmount(balance.toString());
+          setStakedAmount(`${balance}`);
         })
         .catch(error => {
           console.error('Error:', error);
@@ -54,7 +54,7 @@ function Staking(props) {
     vireoXContract
       .getTotalSupply()
       .then(totalSupply => {
-        setPeopleAmount(totalSupply.toString());
+        setPeopleAmount(`${totalSupply}`);
       })
       .catch(error => {
         console.error('Error getting total supply:', error);
@@ -141,13 +141,13 @@ function Staking(props) {
         <SubTitle>Now your turn!</SubTitle>
         <Picker>
           <PickerContainer
-            active={activeIndex === 0}
+            $active={activeIndex === 0}
             onClick={() => handleContainerClick(0)}
           >
             Stake
           </PickerContainer>
           <PickerContainer
-            active={activeIndex === 1}
+            $active={activeIndex === 1}
             onClick={() => handleContainerClick(1)}
           >
             Unstake

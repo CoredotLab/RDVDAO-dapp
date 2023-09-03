@@ -56,9 +56,8 @@ function About() {
     vireoXContract
       .getTotalSupply()
       .then(totalSupply => {
-        setStakersAmount(totalSupply.toString());
-        amount = parseInt(totalSupply.toString()) * 1600;
-        setStakingAmount(amount.toString());
+        setStakersAmount(totalSupply);
+        setStakingAmount(parseInt(totalSupply) * 1600);
       })
       .catch(error => {
         console.error('Error getting total supply:', error);

@@ -60,19 +60,19 @@ function Header() {
         <Logo src={logo} />
         <StyledMenuItem
           onClick={() => handleMenuItemClick('about')}
-          active={navigationStore.activeMenu === 'about'}
+          $active={navigationStore.activeMenu === 'about'}
         >
           about
         </StyledMenuItem>
         <StyledMenuItem
           onClick={() => handleMenuItemClick('staking')}
-          active={navigationStore.activeMenu === 'staking'}
+          $active={navigationStore.activeMenu === 'staking'}
         >
           staking
         </StyledMenuItem>
         <StyledMenuItem
           onClick={() => handleMenuItemClick('governance')}
-          active={navigationStore.activeMenu === 'governance'}
+          $active={navigationStore.activeMenu === 'governance'}
         >
           governance
         </StyledMenuItem>

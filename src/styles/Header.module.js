@@ -17,7 +17,7 @@ export const HeaderContainer = styled.div`
 
 export const StyledMenuItem = styled.div`
   cursor: pointer;
-  color: ${props => (props.active ? 'green' : 'white')};
+  color: ${props => (props.$active ? 'green' : 'white')};
 `;
 
 // export const GreenContainer = styled.div`
@@ -49,5 +49,5 @@ export const Logo = styled.img`
   height: 50px;
   position: absolute;
   left: 150px;
-  top: 60px;
+  top: 0px;
 `;
