@@ -132,7 +132,14 @@ function About() {
         <br /> your <GreenSpan>environmental impact</GreenSpan> via staking!
       </TextByStep4>
       {/* <NFTImg src={Nft} /> */}
-      <LaunchAppBtnGreen>Launch app</LaunchAppBtnGreen>
+      <LaunchAppBtnGreen
+        onClick={() => {
+          navigationStore.setActiveMenu('staking');
+          navigate('/staking');
+        }}
+      >
+        Launch app
+      </LaunchAppBtnGreen>
       <MidTitle>
         If you stake 100 $ <span style={{ color: '#62EBA5' }}>now</span>
       </MidTitle>
@@ -170,7 +177,14 @@ function About() {
       <MidTitle>before unstake forever,</MidTitle>
       <MidTitleGreen>take your adorable!</MidTitleGreen>
       <div style={{ height: '400px' }} />
-      <LaunchAppBtnGreen>Launch app</LaunchAppBtnGreen>
+      <LaunchAppBtnGreen
+        onClick={() => {
+          navigationStore.setActiveMenu('staking');
+          navigate('/staking');
+        }}
+      >
+        Launch app
+      </LaunchAppBtnGreen>
       <FaqTitle>FAQ</FaqTitle>
       <FaqWrapper>
         <FaqContainer>
