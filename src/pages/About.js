@@ -42,6 +42,7 @@ import sproutImg from '../assets/images/sprout.png';
 import treeImg from '../assets/images/tree.png';
 import navigationStore from '../components/NavigationStore';
 import { VireoXContract } from '../contracts/modules/VireoX';
+import { BigInteger } from 'big-integer';
 
 function About() {
   var [stakersAmount, setStakersAmount] = useState('');
@@ -57,7 +58,7 @@ function About() {
       .getTotalSupply()
       .then(totalSupply => {
         setStakersAmount(totalSupply.toString());
-        setStakingAmount((totalSupply * 1600).toString());
+        setStakingAmount((totalSupply * BigInteger(1600)).toString());
       })
       .catch(error => {
         console.error('Error getting total supply:', error);
