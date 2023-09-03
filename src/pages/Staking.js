@@ -86,7 +86,7 @@ function Staking(props) {
           console.log('Balance in Ether:', balanceInEther);
 
           // 텍스트 필드에 최대값으로 설정
-          setTextFieldValue(balanceInEther);
+          setTextFieldValue(balanceInEther.toString());
         } else {
           console.error('Ethereum address not found.');
         }
