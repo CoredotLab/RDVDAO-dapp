@@ -66,13 +66,16 @@ function Staking(props) {
     setTextFieldValue(event.target.value);
 
     setDonation(
-      parseInt((parseInt(stakedAmount) + parseInt(event.target.value)) * 1.5),
+      ((BigInteger(stakedAmount) + BigInteger(event.target.value)) *
+        BigInteger(15)) /
+        BigInteger(10),
     );
-    setLives(
-      parseInt((parseInt(stakedAmount) + parseInt(event.target.value)) * 1.0),
-    );
+
+    setLives(BigInteger(stakedAmount) + BigInteger(event.target.value));
+
     setTree(
-      parseInt((parseInt(stakedAmount) + parseInt(event.target.value)) * 0.5),
+      (BigInteger(stakedAmount) + BigInteger(event.target.value)) /
+        BigInteger(2),
     );
   };
 
