@@ -26,6 +26,7 @@ import navigationStore from '../components/NavigationStore';
 import { VireoETHContract } from '../contracts/modules/VireoETH';
 import { VireoXContract } from '../contracts/modules/VireoX';
 import { VireoStakerContract } from '../contracts/modules/VireoStaker';
+import { BigInteger } from 'big-integer';
 
 function Staking(props) {
   const [peopleAmount, setPeopleAmount] = useState('0'); // 초기값 0으로 설정
@@ -63,7 +64,6 @@ function Staking(props) {
 
   const handleTextFieldChange = event => {
     setTextFieldValue(event.target.value);
-    console.log(typeof parseInt(event.target.value));
 
     setDonation(
       parseInt((parseInt(stakedAmount) + parseInt(event.target.value)) * 1.5),
@@ -93,7 +93,7 @@ function Staking(props) {
           console.log('Balance in Ether:', balanceInEther);
 
           // 텍스트 필드에 최대값으로 설정
-          setTextFieldValue(balanceInEther.toString());
+          setTextFieldValue(parseInt(balanceInEther));
         } else {
           console.error('Ethereum address not found.');
         }
