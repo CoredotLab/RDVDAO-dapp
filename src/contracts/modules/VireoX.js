@@ -18,6 +18,6 @@ export class VireoXContract {
 
   async getTotalSupply() {
     const totalSupply = await this.contract.methods.totalSupply().call();
-    return parseInt(totalSupply);
+    return Number(totalSupply);
   }
 }
