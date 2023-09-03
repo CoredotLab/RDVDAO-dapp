@@ -44,7 +44,7 @@ function Staking(props) {
       vireoETHContract
         .balanceOf(navigationStore.walletAddress)
         .then(balance => {
-          setStakedAmount(`${balance}`);
+          setStakedAmount(balance);
         })
         .catch(error => {
           console.error('Error:', error);

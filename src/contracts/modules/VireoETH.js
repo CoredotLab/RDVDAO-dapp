@@ -19,7 +19,7 @@ export class VireoETHContract {
   async balanceOf(account) {
     try {
       const balance = await this.contract.methods.balanceOf(account).call();
-      return balance;
+      return balance.toString();
     } catch (error) {
       console.error('Error fetching balance:', error);
       throw error;
