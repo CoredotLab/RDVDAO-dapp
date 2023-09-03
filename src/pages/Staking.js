@@ -104,7 +104,7 @@ function Staking(props) {
 
   const onClickConfirm = () => {
     console.log(textFieldValue);
-    console.log(Web3.utils.toWei(textFieldValue, 'ether'));
+    console.log(Web3.utils.toWei(parseInt(textFieldValue), 'ether'));
     console.log(navigationStore.walletAddress);
 
     const vireoStakerContract = new VireoStakerContract();
