@@ -44,7 +44,7 @@ function Staking(props) {
       vireoETHContract
         .balanceOf(navigationStore.walletAddress)
         .then(balance => {
-          setStakedAmount(balance);
+          setStakedAmount(balance.toString());
         })
         .catch(error => {
           console.error('Error:', error);
@@ -54,7 +54,7 @@ function Staking(props) {
     vireoXContract
       .getTotalSupply()
       .then(totalSupply => {
-        setPeopleAmount(`${totalSupply}`);
+        setPeopleAmount(totalSupply.toString());
       })
       .catch(error => {
         console.error('Error getting total supply:', error);
