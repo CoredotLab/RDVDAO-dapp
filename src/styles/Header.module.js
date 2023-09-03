@@ -49,5 +49,5 @@ export const Logo = styled.img`
   height: 50px;
   position: absolute;
   left: 150px;
-  top: 0px;
+  top: 50px;
 `;
