@@ -63,10 +63,17 @@ function Staking(props) {
 
   const handleTextFieldChange = event => {
     setTextFieldValue(event.target.value);
+    console.log(typeof parseInt(event.target.value));
 
-    setDonation(parseInt((parseInt(stakedAmount) + event.target.value) * 1.5));
-    setLives(parseInt((parseInt(stakedAmount) + event.target.value) * 1.0));
-    setTree(parseInt((parseInt(stakedAmount) + event.target.value) * 0.5));
+    setDonation(
+      parseInt((parseInt(stakedAmount) + parseInt(event.target.value)) * 1.5),
+    );
+    setLives(
+      parseInt((parseInt(stakedAmount) + parseInt(event.target.value)) * 1.0),
+    );
+    setTree(
+      parseInt((parseInt(stakedAmount) + parseInt(event.target.value)) * 0.5),
+    );
   };
 
   const handleMaxButtonClick = async () => {
