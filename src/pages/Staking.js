@@ -26,7 +26,6 @@ import navigationStore from '../components/NavigationStore';
 import { VireoETHContract } from '../contracts/modules/VireoETH';
 import { VireoXContract } from '../contracts/modules/VireoX';
 import { VireoStakerContract } from '../contracts/modules/VireoStaker';
-import { BigInteger } from 'big-integer';
 
 function Staking(props) {
   const [peopleAmount, setPeopleAmount] = useState('0'); // 초기값 0으로 설정
@@ -64,18 +63,16 @@ function Staking(props) {
 
   const handleTextFieldChange = event => {
     setTextFieldValue(event.target.value);
+    console.log(typeof parseInt(event.target.value));
 
     setDonation(
-      ((BigInteger(stakedAmount) + BigInteger(event.target.value)) *
-        BigInteger(15)) /
-        BigInteger(10),
+      parseInt((parseInt(stakedAmount) + parseInt(event.target.value)) * 1.5),
     );
-
-    setLives(BigInteger(stakedAmount) + BigInteger(event.target.value));
-
+    setLives(
+      parseInt((parseInt(stakedAmount) + parseInt(event.target.value)) * 1.0),
+    );
     setTree(
-      (BigInteger(stakedAmount) + BigInteger(event.target.value)) /
-        BigInteger(2),
+      parseInt((parseInt(stakedAmount) + parseInt(event.target.value)) * 0.5),
     );
   };
 
@@ -96,7 +93,7 @@ function Staking(props) {
           console.log('Balance in Ether:', balanceInEther);
 
           // 텍스트 필드에 최대값으로 설정
-          setTextFieldValue(parseInt(balanceInEther));
+          setTextFieldValue(balanceInEther.toString());
         } else {
           console.error('Ethereum address not found.');
         }
@@ -117,7 +114,7 @@ function Staking(props) {
 
     vireoStakerContract
       .stakeEth(
-        Web3.utils.toWei(parseInt(textFieldValue), 'ether'),
+        Web3.utils.toWei(textFieldValue, 'ether'),
         navigationStore.walletAddress,
         '0x9041EC7D30913afD3d55F09238B5e6CF74736888',
       )

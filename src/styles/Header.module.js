@@ -46,8 +46,8 @@ export const LaunchAppBtn = styled.button`
 
 export const Logo = styled.img`
   width: 170px;
-  height: 50px;
+  height: 40px;
   position: absolute;
   left: 150px;
-  top: 50px;
+  top: 60px;
 `;
