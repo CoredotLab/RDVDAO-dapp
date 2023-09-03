@@ -57,7 +57,7 @@ function About() {
       .getTotalSupply()
       .then(totalSupply => {
         setStakersAmount(totalSupply);
-        setStakingAmount(parseInt(totalSupply) * 1600);
+        setStakingAmount((parseInt(totalSupply) * 1600).toString());
       })
       .catch(error => {
         console.error('Error getting total supply:', error);
