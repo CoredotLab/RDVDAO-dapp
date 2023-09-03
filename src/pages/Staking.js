@@ -114,7 +114,7 @@ function Staking(props) {
 
     vireoStakerContract
       .stakeEth(
-        Web3.utils.toWei(textFieldValue, 'ether'),
+        Web3.utils.toWei(parseInt(textFieldValue), 'ether'),
         navigationStore.walletAddress,
         '0x9041EC7D30913afD3d55F09238B5e6CF74736888',
       )
