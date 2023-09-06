@@ -44,6 +44,9 @@ function Staking(props) {
       vireoETHContract
         .balanceOf(navigationStore.walletAddress)
         .then(balance => {
+          // balance는 wei 단위이므로 ether로 변환
+          balance = Web3.utils.fromWei(balance, 'ether');
+          balance = parseFloat(balance).toFixed(3);
           setStakedAmount(balance.toString());
         })
         .catch(error => {
@@ -64,6 +67,13 @@ function Staking(props) {
   const handleTextFieldChange = event => {
     setTextFieldValue(event.target.value);
     console.log(typeof parseInt(event.target.value));
+    console.log(event.target.value);
+    if (event.target.value === '') {
+      setDonation(parseInt(parseInt(stakedAmount) * 1.5));
+      setLives(parseInt(parseInt(stakedAmount) * 1.0));
+      setTree(parseInt(parseInt(stakedAmount) * 0.5));
+      return;
+    }
 
     setDonation(
       parseInt((parseInt(stakedAmount) + parseInt(event.target.value)) * 1.5),

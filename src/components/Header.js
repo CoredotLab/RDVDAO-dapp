@@ -35,7 +35,17 @@ function Header() {
   const connectWallet = async () => {
     if (window.ethereum) {
       try {
-        window.ethereum.request({ method: 'eth_requestAccounts', params: [] });
+        await window.ethereum
+          .request({
+            method: 'eth_requestAccounts',
+            params: [],
+          })
+          .then(function (accounts) {
+            console.log('accounts', accounts);
+          })
+          .catch(function (error) {
+            console.error('eth_requestAccounts ERROR::', error);
+          });
 
         const web3 = new Web3(window.ethereum);
         const accounts = await web3.eth.getAccounts();
@@ -44,6 +54,36 @@ function Header() {
           navigationStore.setWalletAddress(accounts[0]);
           navigate('/staking');
         }
+        // isConnected
+        const isConnected = window.ethereum.isConnected();
+        console.log('isConnected', isConnected);
+
+        // request permission
+        await window.ethereum
+          .request({
+            method: 'wallet_requestPermissions',
+            params: [
+              {
+                eth_accounts: {},
+              },
+            ],
+          })
+          .then(permissions => {
+            const accountsPermission = permissions.find(
+              permission => permission.parentCapability === 'eth_accounts',
+            );
+            if (accountsPermission) {
+              console.log('eth_accounts permission successfully requested!');
+            }
+          })
+          .catch(error => {
+            if (error.code === 4001) {
+              // EIP-1193 userRejectedRequest error
+              console.log('Permissions needed to continue.');
+            } else {
+              console.error(error);
+            }
+          });
       } catch (error) {
         console.error('Error connecting wallet:', error);
         navigationStore.setWalletAddress(null); // 연결 끊김
@@ -51,6 +91,19 @@ function Header() {
     } else {
       console.error('MetaMask not found. Please install it.');
       navigationStore.setWalletAddress(null); // 연결 끊김
+    }
+  };
+
+  const handleLaunchAppBtnClick = () => {
+    if (navigationStore.activeMenu !== 'staking') {
+      navigate('/staking');
+      navigationStore.setActiveMenu('staking');
+    } else {
+      if (navigationStore.walletAddress) {
+        navigate('/staking');
+      } else {
+        connectWallet();
+      }
     }
   };
 
@@ -76,10 +129,8 @@ function Header() {
         >
           governance
         </StyledMenuItem>
-        <LaunchAppBtn
-          onClick={navigationStore.walletAddress ? null : connectWallet}
-        >
-          {navigationStore.activeMenu === 'about'
+        <LaunchAppBtn onClick={handleLaunchAppBtnClick}>
+          {navigationStore.activeMenu !== 'staking'
             ? 'Launch app'
             : navigationStore.walletAddress
             ? `${navigationStore.walletAddress.substring(0, 6)}...`

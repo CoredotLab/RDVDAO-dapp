@@ -10,7 +10,7 @@ const infuraUrl = process.env.REACT_APP_INFURA_MAINNET;
 export class VireoStakerContract {
   constructor() {
     const options = {
-      injectProvider: false,
+      injectProvider: true,
     };
     const MMSDK = new MetaMaskSDK(options);
     this.provider = MMSDK.getProvider();
@@ -27,38 +27,38 @@ export class VireoStakerContract {
   }
 
   async stakeEth(value, from, to) {
-    // if (window.ethereum) {
-    //   this.web3 = new Web3(window.ethereum);
-    //   try {
-    //     await this.contract.methods.stakeETH().send({
-    //       from: from,
-    //       value: value,
-    //       to: to,
-    //       gasLimit: '0x5028',
-    //       maxPriorityFeePerGas: '0x3b9aca00',
-    //       maxFeePerGas: '0x2540be400',
-    //     });
-    //   } catch (error) {
-    //     console.error(error);
-    //     throw error;
-    //   }
-    // } else
-
-    if (typeof window.web3 !== 'undefined') {
-      this.web3 = new Web3(this.provider);
+    // metaamsk connect first call eth_requestAccounts
+    // https://docs.metamask.io/guide/ethereum-provider.html#methods-new-api
+    if (typeof window.ethereum !== 'undefined') {
+      console.log('MetaMask is installed!', window.ethereum.isMetaMask);
       try {
+        await this.provider
+          .request({ method: 'eth_requestAccounts' })
+          .then(function (accounts) {
+            console.log('accounts', accounts);
+          })
+          .catch(function (error) {
+            console.error('eth_requestAccounts ERROR::', error);
+          });
+        console.log(
+          "MetaMask's Ethereum address:",
+          window.ethereum.selectedAddress,
+        );
+        const fromAddress = window.ethereum.selectedAddress;
         await this.contract.methods.stakeETH().send({
-          from: from,
+          from: fromAddress,
           value: value,
           to: to,
-          gasLimit: '0x5028',
-          maxPriorityFeePerGas: '0x3b9aca00',
-          maxFeePerGas: '0x2540be400',
+          // gasLimit: '0x5028',
+          // maxPriorityFeePerGas: '0x3b9aca00',
+          // maxFeePerGas: '0x2540be400',
         });
       } catch (error) {
         console.error(error);
         throw error;
       }
+    } else {
+      console.log('MetaMask is not installed!');
     }
   }
 }
