@@ -42,23 +42,63 @@ import sproutImg from '../assets/images/sprout.png';
 import treeImg from '../assets/images/tree.png';
 import navigationStore from '../components/NavigationStore';
 import { VireoXContract } from '../contracts/modules/VireoX';
+import { VireoETHContract } from '../contracts/modules/VireoETH';
 import { BigInteger } from 'big-integer';
+import axios from 'axios';
 
 function About() {
   var [stakersAmount, setStakersAmount] = useState('');
   var [stakingAmount, setStakingAmount] = useState('');
   var amount = 0;
   var [treasuryAmount, setTreasuryAmount] = useState('100');
+  var [apy, setApy] = useState('');
   const navigate = useNavigate('/staking');
 
   useEffect(() => {
+    let ethCurrencyPrice = 1600;
+    // axios로 api에서 treasury amount 가져오기
+    const treasuryApiUrl =
+      'https://stake.testnet.fi/api/rewards?address=0x9041EC7D30913afD3d55F09238B5e6CF74736888&currency=usd&onlyRewards=false&archiveRate=true&skip=0&limit=10';
+
+    axios.get(treasuryApiUrl).then(response => {
+      // console.log('response', response);
+      const data = response.data;
+      // console.log('data', data);
+      const ethRewards = data['totals']['ethRewards'];
+      // console.log('ethRewards', ethRewards);
+      const ethCurrencyPriceInStr = data['stETHCurrencyPrice']['usd'];
+      ethCurrencyPrice = parseFloat(ethCurrencyPriceInStr);
+
+      setTreasuryAmount(
+        (
+          (parseInt(ethRewards) / 1000000000000000000) *
+          ethCurrencyPrice
+        ).toFixed(2),
+      );
+
+      const averageApy = data['averageApr'];
+      setApy(parseFloat(averageApy).toFixed(2));
+    });
+
     const vireoXContract = new VireoXContract();
 
     vireoXContract
       .getTotalSupply()
       .then(totalSupply => {
         setStakersAmount(totalSupply.toString());
-        setStakingAmount((totalSupply * 1600).toString());
+      })
+      .catch(error => {
+        console.error('Error getting total supply:', error);
+      });
+
+    const vireoEthContract = new VireoETHContract();
+
+    vireoEthContract
+      .totalSupply()
+      .then(totalSupply => {
+        // total supply는 wei인데 eth로 바꾸고 eth의 $ 환율을 곱함
+        amount = (totalSupply / 1000000000000000000) * ethCurrencyPrice;
+        setStakingAmount(amount.toFixed(2));
       })
       .catch(error => {
         console.error('Error getting total supply:', error);
@@ -83,22 +123,28 @@ function About() {
             navigationStore.setActiveMenu('staking');
             navigate('/staking');
           }}
-          src={launchApp}
-        />
+        >
+          Launch app
+        </LaunchAppBtn>
         <DataWrapper>
           <SideText>You can</SideText>
           <DataContainer>
             <StakingDataContainer>
-              <DataSubContainer>
+              {/* <DataSubContainer>
                 <Data>{stakersAmount}</Data>Total Stakers
-              </DataSubContainer>
+              </DataSubContainer> */}
               <DataSubContainer>
                 <Data>{stakingAmount}$</Data>Total Staked
               </DataSubContainer>
             </StakingDataContainer>
-            <DataSubContainer>
-              <Data>{treasuryAmount}$</Data>Treasury
-            </DataSubContainer>
+            <StakingDataContainer>
+              <DataSubContainer>
+                <Data>{treasuryAmount}$</Data>Treasury
+              </DataSubContainer>
+              <DataSubContainer>
+                <Data>{apy}%</Data>Estimated APY
+              </DataSubContainer>
+            </StakingDataContainer>
           </DataContainer>
           <SideText>Join us</SideText>
         </DataWrapper>

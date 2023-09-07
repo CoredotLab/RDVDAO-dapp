@@ -25,4 +25,14 @@ export class VireoETHContract {
       throw error;
     }
   }
+
+  async totalSupply() {
+    try {
+      const totalSupply = await this.contract.methods.totalSupply().call();
+      return totalSupply;
+    } catch (error) {
+      console.error('Error fetching total supply:', error);
+      throw error;
+    }
+  }
 }

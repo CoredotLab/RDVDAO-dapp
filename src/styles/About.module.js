@@ -8,12 +8,12 @@ export const MainContainer = styled.div`
 
 export const BackgroundImg = styled.img`
   height: auto;
-  width: 100%;
-  max-width: 100%;
+  width: 1440px;
   z-index: -1;
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 export const BackgroundImgMiddle = styled.img`
   height: auto;
@@ -28,33 +28,46 @@ export const BackgroundImgMiddle = styled.img`
 
 export const TitleContainer = styled.div`
   color: white;
-  font-size: 100px;
+  font-size: 72px;
+  font-weight: 700;
   text-align: center;
-  padding-top: 200px;
-  line-height: 86.4px;
+  padding-top: 150px;
+  line-height: 120%;
   font-weight: 600;
 `;
 
 export const SubtitleContainer = styled.div`
   color: rgb(255, 255, 255, 0.7);
-  font-size: 30px;
+  font-size: 22px;
+  font-weight: 500;
   text-align: center;
-  padding-top: 120px;
-  line-height: 33px;
+  padding-top: 6px;
+  line-height: 150%;
 `;
 
-export const LaunchAppBtn = styled.img`
-  width: 220px;
-  height: 70px;
-  display: block;
+export const LaunchAppBtn = styled.div`
+  width: 205px;
+  height: 60px;
+  display: flex; // 변경된 부분
+  justify-content: center; // 변경된 부분
+  align-items: center; // 변경된 부분
   margin: 0 auto;
-  padding-top: 40px;
+  margin-top: 40px;
+  border-radius: 40px;
+  background: linear-gradient(277deg, #b3fc95 15.29%, #2bd0e6 79.81%);
+  color: #000;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
 `;
 
 export const DataWrapper = styled.div`
   display: flex;
   flex-direction: row;
-  margin-top: 150px;
+  margin-top: 59px;
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -74,7 +87,7 @@ export const SideText = styled.div`
 export const DataContainer = styled.div`
   display: block;
   width: 500px;
-  height: 300px;
+  height: 296px;
   margin: 0;
   color: white;
   display: flex;
@@ -88,11 +101,11 @@ export const StakingDataContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding-top: 50px;
+  // padding-top: 50px;
 `;
 
 export const DataSubContainer = styled.div`
-  font-size: 25px;
+  font-size: 20px;
   padding: 20px;
   margin-right: 30px;
   margin-left: 30px;
@@ -101,37 +114,46 @@ export const DataSubContainer = styled.div`
 export const Data = styled.div`
   color: #3ae000;
   text-shadow: 0 0 8px rgba(58, 224, 0, 0.7);
-  font-size: 90px;
+  font-size: 70px;
 `;
 
 export const TextByStep1 = styled.div`
+  color: #fff;
   text-align: center;
-  color: white;
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 40px;
-  padding-top: 650px;
-  padding-left: 600px;
+  font-family: SUIT;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%; /* 44.8px */
+  letter-spacing: 0px;
+  padding-left: 470px;
+  padding-top: 30px;
 `;
 
 export const TextByStep2 = styled.div`
+  color: #fff;
   text-align: center;
-  color: white;
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 40px;
-  padding-top: 680px;
-  padding-right: 560px;
+  font-family: SUIT;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%; /* 44.8px */
+  letter-spacing: 0px;
+  padding-right: 370px;
+  padding-top: 400px;
 `;
 
 export const TextByStep3 = styled.div`
+  color: #fff;
   text-align: center;
-  color: white;
-  font-weight: 400;
-  font-size: 40px;
-  line-height: 40px;
-  padding-top: 750px;
-  padding-left: 520px;
+  font-family: SUIT;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 140%; /* 44.8px */
+  letter-spacing: 0px;
+  padding-left: 380px;
+  padding-top: 460px;
 `;
 
 export const TextByStep4 = styled.div`
@@ -140,7 +162,7 @@ export const TextByStep4 = styled.div`
   font-weight: 600;
   font-size: 40px;
   line-height: 60px;
-  padding-top: 850px;
+  padding-top: 550px;
 `;
 
 export const GreenSpan = styled.span`
@@ -175,7 +197,7 @@ export const LaunchAppBtnGreen = styled.button`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 700px;
+  margin-top: 500px;
 `;
 
 export const MidTitle = styled.div`
@@ -183,13 +205,13 @@ export const MidTitle = styled.div`
   color: white;
   font-weight: 600;
   text-align: center;
-  padding-top: 250px;
+  padding-top: 118px;
 `;
 export const MidTitleGreen = styled.div`
   font-size: 64px;
   font-weight: 600;
   text-align: center;
-  padding-top: 30px;
+  padding-top: 74px;
   background: linear-gradient(135deg, #78fca4, #25bc9c);
   -webkit-background-clip: text; /* 텍스트에 그라데이션 적용 */
   color: transparent; /* 텍스트 색상을 투명하게 설정 */
@@ -202,7 +224,7 @@ export const BenefitWrapper = styled.div`
   margin: 0 auto;
   justify-content: center;
   align-items: flex-start;
-  padding-top: 200px;
+  padding-top: 118px;
 `;
 
 export const BenefitContainer = styled.div`
@@ -277,7 +299,7 @@ export const FaqWrapper = styled.div`
 export const FaqContainer = styled.div`
   background: linear-gradient(180deg, #313146 0%, rgba(49, 49, 70, 0) 100%);
   width: 916px;
-  height: 230px;
+  height: 275px;
   border-radius: 26px;
   padding: 30px;
   margin-bottom: 60px;
