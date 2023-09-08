@@ -132,7 +132,7 @@ function Staking(props) {
         balance = Web3.utils.fromWei(balance, 'ether');
         balance = parseFloat(balance).toFixed(3);
         setStakedAmount(balance.toString());
-        handleTextFieldChange({ target: { value: '' } });
+        handleTextFieldChange({ target: { value: '0' } });
       })
       .catch(error => {
         console.error('Error:', error);
@@ -171,14 +171,14 @@ function Staking(props) {
 
         if (ethereumAddress) {
           // 연결된 지갑의 Ethereum 잔액 가져오기
-          const balance = await web3.eth.getBalance(ethereumAddress);
+          const balance = (
+            (await web3.eth.getBalance(ethereumAddress)) / 1000000000000000000
+          ).toFixed(5);
 
-          // Ethereum를 wei에서 ether로 변환 (18자리 숫자를 사용)
-          const balanceInEther = web3.utils.fromWei(balance, 'ether');
-          console.log('Balance in Ether:', balanceInEther);
+          console.log('Balance in Ether:', balance);
 
           // 텍스트 필드에 최대값으로 설정
-          setTextFieldValue(balanceInEther.toString());
+          setTextFieldValue(balance.toString());
         } else {
           console.error('Ethereum address not found.');
         }
@@ -270,15 +270,15 @@ function Staking(props) {
               color: 'white', // 글자색을 흰색으로 설정
               padding: '30px 0px', // 가로와 세로 패딩을 설정 (위, 아래, 왼쪽, 오른쪽)
               fontSize: '40px',
-              width: '150px',
+              width: '240px',
               fontWeight: '700',
               textAlign: 'right',
               border: '1px solid white',
               borderRadius: '25px',
             }}
-            defaultValue={textFieldValue}
+            value={textFieldValue}
             onChange={handleTextFieldChange}
-          />{' '}
+          />
           <div
             style={{
               color: 'white',
@@ -292,7 +292,7 @@ function Staking(props) {
           <button
             onClick={handleMaxButtonClick}
             style={{
-              marginLeft: '100px',
+              marginLeft: '30px',
               fontSize: '30px',
               color: 'white',
               backgroundColor: 'black',
