@@ -122,6 +122,7 @@ function Staking(props) {
   };
 
   useEffect(() => {
+    console.log('useEffect vireoETH');
     if (navigationStore.walletAddress === null) {
       return;
     }
@@ -131,19 +132,31 @@ function Staking(props) {
         // balance는 wei 단위이므로 ether로 변환
         balance = Web3.utils.fromWei(balance, 'ether');
         balance = parseFloat(balance).toFixed(3);
-        setStakedAmount(balance.toString());
-        handleTextFieldChange({ target: { value: '0' } });
+        setStakedAmount(prevState => {
+          return balance;
+        });
+        console.log('balance', parseInt(parseInt(balance) * 1.5));
+        if (textFieldValue === '' || textFieldValue === '0') {
+          setDonation(parseInt(parseInt(balance) * 1.5));
+          setLives(parseInt(parseInt(balance) * 1.0));
+          setTree(parseInt(parseInt(balance) * 0.5));
+          return;
+        }
+
+        // handleTextFieldChange({ target: { value: '0' } });
       })
       .catch(error => {
         console.error('Error:', error);
       });
-  }, [navigationStore.walletAddress]);
+  }, [vireoETHContract]);
 
   const handleTextFieldChange = event => {
     setTextFieldValue(event.target.value);
-    console.log(typeof parseInt(event.target.value));
+    console.log('handleTextFieldChange', event.target.value);
+    console.log(typeof event.target.value);
     console.log(event.target.value);
-    if (event.target.value === '') {
+    if (event.target.value === '' || event.target.value === '0') {
+      console.log('if', stakedAmount);
       setDonation(parseInt(parseInt(stakedAmount) * 1.5));
       setLives(parseInt(parseInt(stakedAmount) * 1.0));
       setTree(parseInt(parseInt(stakedAmount) * 0.5));
@@ -179,6 +192,7 @@ function Staking(props) {
 
           // 텍스트 필드에 최대값으로 설정
           setTextFieldValue(balance.toString());
+          handleTextFieldChange({ target: { value: balance.toString() } });
         } else {
           console.error('Ethereum address not found.');
         }
