@@ -7,6 +7,7 @@ function Governance(props) {
   return (
     <div
       style={{
+        width: '1440px',
         margin: '0 auto',
       }}
     >
