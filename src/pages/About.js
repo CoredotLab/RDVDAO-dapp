@@ -106,7 +106,12 @@ function About() {
   }, []);
 
   return (
-    <div>
+    <div
+      style={{
+        width: '1440px',
+        margin: '0 auto',
+      }}
+    >
       <BackgroundImg src={backgroundImg} />
       <MainContainer>
         <Header />
@@ -130,9 +135,6 @@ function About() {
           <SideText>You can</SideText>
           <DataContainer>
             <StakingDataContainer>
-              {/* <DataSubContainer>
-                <Data>{stakersAmount}</Data>Total Stakers
-              </DataSubContainer> */}
               <DataSubContainer>
                 <Data>{stakingAmount}$</Data>Total Staked
               </DataSubContainer>

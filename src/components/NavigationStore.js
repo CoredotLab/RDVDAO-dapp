@@ -1,5 +1,3 @@
-import { makeObservable, observable, action } from 'mobx';
-
 class NavigationStore {
   activeMenu = 'about';
   walletAddress = null;

@@ -1,17 +1,15 @@
 import { styled } from 'styled-components';
 
 export const MainContainer = styled.div`
-  width: 100%;
-  height: 100vh;
+  height: 2076px;
+  width: 1440px;
   position: relative;
+  margin: 0 auto;
 `;
 
 export const BackgroundImg = styled.img`
-  height: auto;
-  width: 100%;
-  max-width: 100%;
+  height: 2076px;
+  width: 1440px;
   z-index: -1;
   position: absolute;
-  top: 0;
-  left: 0;
 `;

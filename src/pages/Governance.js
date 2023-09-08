@@ -5,7 +5,11 @@ import { MainContainer, BackgroundImg } from '../styles/Governance.module';
 
 function Governance(props) {
   return (
-    <div>
+    <div
+      style={{
+        margin: '0 auto',
+      }}
+    >
       <BackgroundImg src={backgroundImg} />
       <MainContainer>
         <Header />

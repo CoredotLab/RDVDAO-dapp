@@ -1,29 +1,18 @@
 import { styled } from 'styled-components';
 
 export const MainContainer = styled.div`
-  width: 100%;
-  height: 100vh;
+  height: 1300px;
+  width: 1440px;
   position: relative;
+  margin: 0 auto;
 `;
 
 export const BackgroundImg = styled.img`
-  height: auto;
+  height: 7019px;
   width: 1440px;
   z-index: -1;
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-`;
-export const BackgroundImgMiddle = styled.img`
-  height: auto;
-  width: 100%;
-  max-width: 100%;
-  z-index: -1;
-  position: absolute;
-  top: 0;
-  left: 0;
-  margin-top: 1400px;
 `;
 
 export const TitleContainer = styled.div`
